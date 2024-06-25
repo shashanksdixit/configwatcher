@@ -1,0 +1,80 @@
+spring:
+  application:
+    name: logconfig
+    
+
+  profiles:
+    active:
+    - kubernetes
+#spring.cloud.kubernetes.config.enabled=true
+#spring.cloud.kubernetes.reload.enabled=true
+#spring.cloud.kubernetes.reload.mode=event
+
+  
+---      
+spring:
+  config:
+    activate:
+      on-profile: "local"
+
+
+  cloud:
+    kubernetes:
+      enabled: false
+      config:
+        enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+        
+my:
+  custom:
+    property: PropertyInitialValue
+
+# Logging level configuration
+logging:
+  level:
+    root: INFO
+    io:
+      sd: DEBUG
+     
+      
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "kubernetes"
+  
+  cloud:
+    kubernetes:
+      reload: 
+        enabled: true
+        mode: event
+      enabled: true
+      config:
+        enabled: true
+
+        namespace: default
+        sources:
+        - namespace: default
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"      
+        
+my:
+  custom:
+    property: PropertyInitialValue
+# Logging level configuration
+logging:
+  level:
+    root: DEBUG
+    io:
+      sd: DEBUG

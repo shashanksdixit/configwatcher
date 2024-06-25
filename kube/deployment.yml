@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logconfig
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: logconfig
+  template:
+    metadata:
+      labels:
+        app: logconfig
+      annotations:
+        configmap.reloader.stakater.com/reload: "my-config"
+    spec:
+      containers:
+        - name: logconfig
+          image: shashanksdixit/logconfig
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: my-config
