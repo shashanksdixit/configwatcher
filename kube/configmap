@@ -1,3 +1,0 @@
-kubectl create configmap my-config --from-file="/mnt/d/STSWorkspace/KubeConfigLogs/logconfig/src/main/resources/application-kubernetes.properties"
-kubectl label  configmap my-config spring.cloud.kubernetes.config='true'
-kubectl annotate configmap my-config spring.cloud.kubernetes.configmap.apps='logconfig'

@@ -72,7 +72,7 @@ items:
             - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_KUBERNETES_COMMONS_CONFIG_RELOAD
               value: DEBUG
             - name: SPRING_CLOUD_KUBERNETES_CONFIGURATION_WATCHER_REFRESHDELAY
-              value: "10000"
+              value: "30000"
             readinessProbe:
               httpGet:
                 port: 8888

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: logconfig
-          image: shashanksdixit/logconfig
+          image: shashanksdixit/logconfig:1.0
           ports:
             - containerPort: 8080
           volumeMounts:
