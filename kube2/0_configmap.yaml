@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+  namespace: default
+  labels:
+    spring.cloud.kubernetes.config: "true"
+  annotations:
+    spring.cloud.kubernetes.secret.apps: "logconfig"
+data:
+  application-kubernetes.properties: |
+    spring.application.name=logconfig
+    spring.cloud.kubernetes.reload.enabled=true
+    spring.cloud.kubernetes.reload.mode=event
+    spring.cloud.kubernetes.repload.monitoring-config-maps=true
+    spring.cloud.kubernetes.enabled=true
+    spring.cloud.kubernetes.config.enabled=true
+
+    spring.cloud.kubernetes.configuration.watcher.actuatorPort=8080
+    spring.config.import=configtree:/config/
+    management.endpoints.web.exposure.include=*
+
+    management.endpoint.env.enabled=true
+    management.endpoint.refresh.enabled=true
+    management.endpoint.restart.enabled=true
+    management.endpoint.env.show-values=ALWAYS
+    management.endpoint.configprops.show-values=ALWAYS
+
+    logging.level.root=INFO
+    logging.level.io.sd=DEBUG
+    logging.file.name=/var/log/app.log
+ 
+    my.custom.property=CustomKube50
